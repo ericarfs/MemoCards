@@ -7,7 +7,6 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import SignedIn from "./components/SignedIn";
-import { useAuth } from "./AuthProvider";
 import NewCard from "./pages/NewCard";
 import UpdateCard from "./pages/UpdateCard";
 
@@ -33,17 +32,17 @@ function App() {
         <Route
           path="/newcard"
           element={
-           
+            <ProtectedRoute>
               <NewCard />
-            
+              </ProtectedRoute>
           }
         />
         <Route
           path="/update/:id"
           element={
-           
+            <ProtectedRoute>
               <UpdateCard />
-            
+            </ProtectedRoute>
           }
         />
         
