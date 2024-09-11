@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import api from "../api";
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
+import LoadingIndicator from "../components/LoadingIndicator";
 import Swal from 'sweetalert2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
@@ -10,6 +11,7 @@ export default function Home (){
     const [cards, setCards] = useState([]);
     const productContainers = useRef([]);
     const [scrollPosition, setScrollPosition] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getCards();
@@ -31,7 +33,8 @@ export default function Home (){
         .then((data) => {
             setCards(data);
         })
-        .catch((err) => alert(err));
+        .catch((err) => alert(err))
+        .finally(() => setLoading(false));
     };
 
     const deleteCard = (id) => {
@@ -84,7 +87,8 @@ export default function Home (){
         <main>
             <section>     
             <div className = "content">
-            {cards.length < 1
+            {loading && <LoadingIndicator />}
+            {cards.length < 1 && !loading
                 ? <h4> There are no cards, create one below! </h4>
                 : 
                 <div className="card-container">
