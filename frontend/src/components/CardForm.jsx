@@ -50,7 +50,6 @@ export default function CardForm({func, method }){
 
     const handleSubmit = async (e) => {
         setLoading(true);
-        console.log(loading);
         e.preventDefault();
         
         if (expression.length > 200) setExpressionError("Expression should be up to 200 characters!");
