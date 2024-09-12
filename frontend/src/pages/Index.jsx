@@ -5,10 +5,11 @@ import "../styles/styles.css"
 export default function Index (){
 
     return (
+        <>
         <section>
         <div className="index-info">
             <div className="logo">
-                <img src={"/flash-card.png"} height="120px"/>
+                <img src={"/cards.svg"} title="Flash card icons created by manshagraphics - Flaticon"/>
                 <h1 className="title">MemoCards</h1>
                 <span>Learning languages in a Flash!<br/></span> 
                 <br/>
@@ -18,6 +19,12 @@ export default function Index (){
                 <Link className="btn btn-auth" to="/register">Register</Link>
             </div> 
         </div>
+        
         </section>
+        <div className="footer">
+            <a href="https://www.flaticon.com/free-icons/flash-card" title="flash card icons">Flash card icons created by manshagraphics - Flaticon</a>
+        </div>
+        
+        </>
     )
 }

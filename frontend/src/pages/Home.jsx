@@ -38,6 +38,7 @@ export default function Home (){
     };
 
     const deleteCard = (id) => {
+        setLoading(true);
         api
           .delete(`/api/cards/${id}/`)
           .then((res) => {

@@ -11,16 +11,18 @@
     --main-bg-white: #fafafa;
     --main-bg-gray: #f7f7f7;
     --green-details: #85A576;
-    --purple-details: rgb(180, 150, 200);
-    --main-purple: rgb(150, 100, 180);
+    --purple-details: #b496c8;
+    --main-purple: #9664b4;
     --pink-darker: rgb(207, 128, 17);
     --brown: #462913;
     --grey: #808080;
     --green-dark:#4c8034;
-    --main-orange:#ff4800;
+    --main-orange:#F96632;
 
 }
-
+#root{
+    height: 100%;
+}
 
 html{
     font-size: 100%;
@@ -58,6 +60,7 @@ button {
 
 section{
     width: 100%;
+    height: 80%;
     display: flex;
     justify-content: center;
 }
@@ -71,6 +74,10 @@ h4{
     color: var(--green-dark);
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+  }
 
 .main-page{
     background-color: var(--main-bg-white);
@@ -430,3 +437,30 @@ h4{
     flex-wrap: wrap;
     gap: 10px;
 }
+
+.not-found-main{
+    width:100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 5vh;
+}
+
+.not-found{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 5vh 5vh 5vh;
+    text-align: center;
+}
+
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }

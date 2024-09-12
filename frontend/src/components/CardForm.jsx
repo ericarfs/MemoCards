@@ -23,6 +23,7 @@ export default function CardForm({func, method }){
     }, []);
 
     const getCard = () => {
+        setLoading(true);
         api
         .get(`/api/cards/${id}/`)
         .then((res) => res.data)
@@ -41,6 +42,9 @@ export default function CardForm({func, method }){
                 showConfirmButton: false,
             })
             navigate("/home");
+        })
+        .finally(() => {
+            setLoading(false);
         });
     };
 
@@ -48,7 +52,7 @@ export default function CardForm({func, method }){
         setLoading(true);
         console.log(loading);
         e.preventDefault();
-
+        
         if (expression.length > 200) setExpressionError("Expression should be up to 200 characters!");
         if (meaning.length > 200) setMeaningError("Expression meaning should be up to 200 characters!");
         if (example.length > 200) setExampleError("Expression example should be up to 200 characters!");
