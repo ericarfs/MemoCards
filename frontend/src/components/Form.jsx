@@ -16,6 +16,13 @@ export default function Form({ route, method }) {
 
   const name = method === "login" ? "Login" : "Register";
 
+  const login = (res) => {
+    localStorage.setItem(ACCESS_TOKEN, res.data.access);
+    localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+    localStorage.setItem("USER_ID", jwtDecode(res.data.access).user_id);
+    localStorage.setItem("USERNAME", username);
+  }
+
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -23,10 +30,7 @@ export default function Form({ route, method }) {
       try {
         const res = await api.post(route, { username, password });
         if (method === "login") {
-          localStorage.setItem(ACCESS_TOKEN, res.data.access);
-          localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-          localStorage.setItem("USER_ID", jwtDecode(res.data.access).user_id);
-          localStorage.setItem("USERNAME", username);
+          login(res);
           navigate("/home");
           
         } else {
@@ -38,7 +42,9 @@ export default function Form({ route, method }) {
             position: 'top', 
             showConfirmButton: false,
           })
-          navigate("/login");
+          const log = await api.post("/api/token/", { username, password });
+          login(log);
+          navigate("/home");
         }
       } catch (error) {
         if (method === "login") {
