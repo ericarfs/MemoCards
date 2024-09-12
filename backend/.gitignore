@@ -1,4 +1,4 @@
 .env
 db.sqlite3
 api/migrations
-api/_pycache_
+api/__pycache__
