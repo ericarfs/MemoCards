@@ -59,14 +59,26 @@ export default function Form({ route, method }) {
           })
         }
         else{
-          Swal.fire({
-            title: "Username not available!", 
-            icon: "error", 
-            toast: true, 
-            timer: 2000, 
-            position: 'top', 
-            showConfirmButton: false,
-          })
+          if (error.status === 400){
+            Swal.fire({
+              title: "Username not available!", 
+              icon: "error", 
+              toast: true, 
+              timer: 2000, 
+              position: 'top', 
+              showConfirmButton: false,
+            })
+          }
+          else{
+            Swal.fire({
+              title: "Failed to create an account!", 
+              icon: "error", 
+              toast: true, 
+              timer: 2000, 
+              position: 'top', 
+              showConfirmButton: false,
+            })
+          }
         }
         console.log(error)
       } finally {
