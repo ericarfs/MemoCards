@@ -1,5 +1,5 @@
 .env
 db.sqlite3
 api/migrations/
-api/__pycache__/
-backend/__pycache__/
+*.pyc
+*.pyo
