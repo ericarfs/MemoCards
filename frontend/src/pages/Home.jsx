@@ -17,12 +17,22 @@ export default function Home (){
         getCards();
     }, []);
     
-    const ITEMWIDTH = 180;
+    const ITEMWIDTH = 285;
 
-    const handleScroll = (scrollAmount) => {
-        const newScrollPosition = scrollPosition + scrollAmount;
-        setScrollPosition(newScrollPosition);
+    const scrollPrev = () => {
+        let newScrollPosition = scrollPosition - ITEMWIDTH;
+        if (newScrollPosition >= 0)
+            setScrollPosition(newScrollPosition);
+        
+        productContainers.current.scrollLeft = newScrollPosition;
+    }
 
+    const scrollNext = () => {
+        let containerWidth = productContainers.current.getBoundingClientRect().bottom;
+        let newScrollPosition = scrollPosition + ITEMWIDTH;
+        if (newScrollPosition <= containerWidth+ITEMWIDTH)
+            setScrollPosition(newScrollPosition);
+        
         productContainers.current.scrollLeft = newScrollPosition;
     }
 
@@ -94,7 +104,7 @@ export default function Home (){
                 : 
                 <div className="card-container">
                     <div className="carousel-view">
-                        <button id="prev-btn" className="prev-btn" onClick={() => handleScroll(-ITEMWIDTH)}>
+                        <button id="prev-btn" className="prev-btn" onClick={() => scrollPrev()}>
                             <svg viewBox="0 0 512 512" width="20" title="chevron-circle-left">
                                 <path d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z" />
                             </svg>
@@ -105,7 +115,7 @@ export default function Home (){
                             ))
                         }  
                         </div>   
-                        <button id="next-btn" className="next-btn" onClick={() => handleScroll(ITEMWIDTH)}>
+                        <button id="next-btn" className="next-btn" onClick={() => scrollNext()}>
                             <svg viewBox="0 0 512 512" width="20" title="chevron-circle-right">
                                 <path d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z" />
                             </svg>
