@@ -18,7 +18,7 @@ class CardListCreate(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Flashcard.objects.filter(author=user)
+        return Flashcard.objects.filter(author=user).order_by('expression')
 
     def perform_create(self, serializer):
         if serializer.is_valid():
