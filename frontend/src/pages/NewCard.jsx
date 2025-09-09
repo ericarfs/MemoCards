@@ -18,6 +18,18 @@ export default function NewCard(){
                         showConfirmButton: false,
                     })
                 }
+            })
+            .catch((err) => {
+                if (err.status === 409) {
+                    Swal.fire({
+                        title: "Duplicated card.", 
+                        icon: "error", 
+                        toast: true, 
+                        timer: 2500, 
+                        position: 'top', 
+                        showConfirmButton: false,
+                    })
+                }
                 else {
                     Swal.fire({
                         title: "Failed to make card.", 
@@ -29,14 +41,6 @@ export default function NewCard(){
                     })
                 }
             })
-            .catch(() => Swal.fire({
-                title: "Failed to make card.", 
-                icon: "error", 
-                toast: true, 
-                timer: 2500, 
-                position: 'top', 
-                showConfirmButton: false,
-              }))
     };
 
     return <CardForm func={addCard} method="Add" />;

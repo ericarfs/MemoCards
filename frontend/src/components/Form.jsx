@@ -48,18 +48,20 @@ export default function Form({ route, method }) {
         }
       } catch (error) {
         if (method === "login") {
-          Swal.fire({
-            title: "Username or Password incorrect!", 
-            icon: "error", 
-            toast: true, 
-            timer: 2000, 
-            position: 'top', 
-            width: '420px',
-            showConfirmButton: false,
-          })
+          if (error.status === 401){
+            Swal.fire({
+              title: "Username or Password incorrect!", 
+              icon: "error", 
+              toast: true, 
+              timer: 2000, 
+              position: 'top', 
+              width: '420px',
+              showConfirmButton: false,
+            })
+          }
         }
         else{
-          if (error.status === 400){
+          if (error.status === 409){
             Swal.fire({
               title: "Username not available!", 
               icon: "error", 
