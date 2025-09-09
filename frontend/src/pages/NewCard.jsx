@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 export default function NewCard(){
     const addCard = async (expression, meaning, example) => {
             api
-            .post("/api/cards/", { expression, meaning, example })
+            .post("/api/flashcards", { expression, meaning, example })
             .then((res) => {
                 if (res.status === 201) {
                     Swal.fire({
@@ -29,7 +29,7 @@ export default function NewCard(){
                     })
                 }
             })
-            .catch((err) => Swal.fire({
+            .catch(() => Swal.fire({
                 title: "Failed to make card.", 
                 icon: "error", 
                 toast: true, 

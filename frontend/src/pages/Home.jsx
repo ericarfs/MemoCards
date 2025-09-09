@@ -38,7 +38,7 @@ export default function Home (){
 
     const getCards= () => {
         api
-        .get("/api/cards/")
+        .get("/api/flashcards")
         .then((res) => res.data)
         .then((data) => {
             setCards(data);
@@ -50,7 +50,7 @@ export default function Home (){
     const deleteCard = (id) => {
         setLoading(true);
         api
-          .delete(`/api/cards/${id}/`)
+          .delete(`/api/flashcards/${id}`)
           .then((res) => {
             if (res.status === 204) {
                 Swal.fire({
@@ -74,7 +74,7 @@ export default function Home (){
             }
             getCards();
           })
-          .catch((error) => {
+          .catch(() => {
             Swal.fire({
                 title: "Failed to delete card.", 
                 icon: "error", 

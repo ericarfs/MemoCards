@@ -25,14 +25,14 @@ export default function CardForm({func, method }){
     const getCard = () => {
         setLoading(true);
         api
-        .get(`/api/cards/${id}/`)
+        .get(`/api/flashcards/${id}`)
         .then((res) => res.data)
         .then((data) => {
             setExpression(data.expression);
             setMeaning(data.meaning);
             setExample(data.example); 
         })
-        .catch((err) => {
+        .catch(() => {
             Swal.fire({
                 title: "Card does not exists.", 
                 icon: "error", 

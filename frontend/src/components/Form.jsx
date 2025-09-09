@@ -42,7 +42,7 @@ export default function Form({ route, method }) {
             position: 'top', 
             showConfirmButton: false,
           })
-          const log = await api.post("/api/token/", { username, password });
+          const log = await api.post("/api/auth/token", { username, password });
           login(log);
           navigate("/home");
         }

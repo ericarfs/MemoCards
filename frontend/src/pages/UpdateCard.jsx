@@ -8,7 +8,7 @@ export default function UpdateCard(){
 
     const updateCard = async (expression, meaning, example) => {
         api
-        .put(`/api/cards/${id}/`, { expression, meaning, example })
+        .put(`/api/flashcards/${id}`, { expression, meaning, example })
         .then((res) => {
             if (res.status === 200) {
                 Swal.fire({
@@ -31,7 +31,7 @@ export default function UpdateCard(){
                 })
             }
         })
-        .catch((err) => Swal.fire({
+        .catch(() => Swal.fire({
             title: "Failed to update card.", 
             icon: "error", 
             toast: true, 
